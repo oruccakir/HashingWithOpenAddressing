@@ -84,7 +84,7 @@ public class MyHashWithDoubleHashing {
 
         int probe = firstHasFunction(data), offset = secondHashFunction(data);
 
-        if(hashTable[probe] == EMPTY){
+        if(hashTable[probe] == EMPTY || hashTable[probe] == DELETED){
             hashTable[probe] = data;
             size++;
             return true;
