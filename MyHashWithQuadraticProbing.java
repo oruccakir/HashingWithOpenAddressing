@@ -55,33 +55,9 @@ public class MyHashWithQuadraticProbing <T>{
 
     public boolean add(T data){
 
-          if(this.loadFactor >0.5) {
-
-            Object temp [] = new Object[this.length];
-
-            for(int i=0; i<this.length; i++){
-
-               temp[i] = this.hash_Table[i];
-
-            }
-
-            this.length *=2;
-
-            this.hash_Table = new Object[this.length];
-
-            for(int i=0; i<temp.length; i++){
-
-                this.hash_Table[i] = temp[i];
-
-            }
-
-            loadFactor = (double) size / length;
-
-        }
-
         int index = this.hash(data);
 
-        int iteration = 0;
+        int iteration = 1;
 
         while(this.hash_Table[index]!=EMPTY && !this.hash_Table[index].equals(DELETED)){
 
@@ -114,15 +90,15 @@ public class MyHashWithQuadraticProbing <T>{
 
         int hash_index = index;
 
-        int iteration = 0;
+        int iteration = 1;
 
         if(data.equals(this.hash_Table[index])) return true;
 
         do{
 
-            if(data.equals(this.hash_Table[index])) return true;
-
             index = (index+iteration*iteration) % this.length;
+
+            if(data.equals(this.hash_Table[index])) return true;
 
             iteration++;
 
@@ -253,13 +229,14 @@ public class MyHashWithQuadraticProbing <T>{
     public static void main(String[] args) {
 
 
-        MyHashWithQuadraticProbing <Integer > hash = new MyHashWithQuadraticProbing<>(4);
+        MyHashWithQuadraticProbing <Integer > hash = new MyHashWithQuadraticProbing<>(8);
 
         hash.add(15);
         hash.add(19);
         hash.add(18);
         hash.add(0);
 
+        hash.print_hash_table();
 
 
         hash.remove(19);
@@ -267,7 +244,8 @@ public class MyHashWithQuadraticProbing <T>{
         hash.add(0);
         System.out.println(hash.loadFactor);
         hash.add(4);
-        hash.add(23);
+        hash.remove(4);
+        //hash.add(23);
 
         boolean con = hash.contains(4);
         System.out.println(con);
@@ -275,8 +253,8 @@ public class MyHashWithQuadraticProbing <T>{
 
        
 
-       System.out.println(hash.contains(0)); 
-       hash.remove(15);
+       System.out.println(hash.contains(15)); 
+
         
         
 
