@@ -131,7 +131,7 @@ public class MyHashWithLinearProbing  <T>{
 
         int hash_index = index;
 
-        if(this.hash_Table[index].equals(data)){
+        if(this.hash_Table[index] != EMPTY && this.hash_Table[index].equals(data)){
 
             this.hash_Table[index] = DELETED;
 
@@ -217,6 +217,7 @@ public class MyHashWithLinearProbing  <T>{
         hash.add(1012);
         hash.add(1);
         hash.add(1500);
+        hash.add(1551);
 
         System.out.println(hash.loadFactor);
         
