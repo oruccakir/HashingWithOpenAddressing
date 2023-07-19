@@ -1,6 +1,4 @@
 
-import java.util.Iterator;
-
 public interface SetInterface<E>{
 
     /**
@@ -41,7 +39,7 @@ public interface SetInterface<E>{
      * @return true if this set contains the specified element
      */
     boolean contains(Object e);
-    
+
     /**
      * Adds the specified element to this set if it is not already present.
      *
