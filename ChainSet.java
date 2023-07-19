@@ -1,5 +1,4 @@
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 
@@ -60,7 +59,7 @@ public class ChainSet<T> implements SetInterface<T> {
 
 
     public boolean isLoadFactor() {
-        return load_factor > 0.5;
+        return load_factor >= 0.75;
     }
 
     @Override
@@ -117,13 +116,6 @@ public class ChainSet<T> implements SetInterface<T> {
     }
 
     @Override
-    public Iterator<T> iterator() {
-        return null;
-    }
-
-    
-
-    @Override
     public boolean remove(Object o) {
 
         int index = 0;
@@ -137,6 +129,8 @@ public class ChainSet<T> implements SetInterface<T> {
 
         if(contains(o)){
             hash_table[index].remove(o);
+            size--;
+            load_factor = size / hash_capacity;
             return true;
         }
         else{
@@ -170,13 +164,17 @@ public class ChainSet<T> implements SetInterface<T> {
 
         ChainSet<Integer> set = new ChainSet<>(50);
 
-        for(int i=0; i<100; i++)
+        for(int i=0; i<32; i++)
         set.add(i);
         set.remove(2);
+        set.add(50);
         set.prinTable();
         System.out.println(set.contains(2));
+        
 
     }
+
+    
 
     
 

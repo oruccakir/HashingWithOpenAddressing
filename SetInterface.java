@@ -43,13 +43,6 @@ public interface SetInterface<E>{
     boolean contains(Object e);
     
     /**
-     * Returns an iterator over the elements in this set.
-     *
-     * @return an iterator over the elements in this set
-     */
-    Iterator<E> iterator();
-    
-    /**
      * Adds the specified element to this set if it is not already present.
      *
      * @param e the element to be added to this set
