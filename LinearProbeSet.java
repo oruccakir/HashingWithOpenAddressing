@@ -1,5 +1,4 @@
-import java.util.Arrays;
-import java.util.LinkedList;
+
 
 public class LinearProbeSet<T> implements SetInterface<T> {
 
@@ -7,7 +6,7 @@ public class LinearProbeSet<T> implements SetInterface<T> {
     private static final Object EMPTY = null;
 
     private final static int DEFAULT_CAPACİTY = 53;
-
+    
     private int size = 0;
     private int hash_capacity = 0;
 
@@ -71,9 +70,7 @@ public class LinearProbeSet<T> implements SetInterface<T> {
         }
 
         else if(hash_table[index].equals(o)){
-
             return true;
-
         }
 
         else{
@@ -133,7 +130,7 @@ public class LinearProbeSet<T> implements SetInterface<T> {
 
         size++;
 
-        load_factor = size / hash_capacity;
+        load_factor = (double)size / hash_capacity;
 
         return true;
 
@@ -142,8 +139,6 @@ public class LinearProbeSet<T> implements SetInterface<T> {
     @Override
     public boolean remove(Object o) {
 
-        if(contains(o) == false) return false;
-        
         int index = 0;
 
         try{
@@ -152,6 +147,7 @@ public class LinearProbeSet<T> implements SetInterface<T> {
         catch(Exception e){
             return false;
         }
+
 
         int hash_index = index;
 
@@ -163,7 +159,7 @@ public class LinearProbeSet<T> implements SetInterface<T> {
 
                 size --;
 
-                load_factor = size / hash_capacity;
+                load_factor = (double)size / hash_capacity;
 
                 return true;
 
@@ -181,6 +177,28 @@ public class LinearProbeSet<T> implements SetInterface<T> {
     @Override
     public void clear() {
         hash_table = new Object[hash_capacity];
+    }
+
+    public String toString(){
+
+        StringBuilder str = new StringBuilder();
+
+        for(int i=0; i<hash_table.length; i++){
+
+            if(hash_table[i] != EMPTY && hash_table[i] != REMOVED) str.append(hash_table[i]+" ");
+
+        }
+
+        str.append("\n");
+
+        str.append("Hash Size : "+size+"\n");
+
+        str.append("Hash Capacity : "+hash_capacity+"\n");
+
+        str.append("Load Factor : "+load_factor+"\n");
+
+        return str.toString();
+
     }
 
     public void printTable(){
@@ -204,18 +222,28 @@ public class LinearProbeSet<T> implements SetInterface<T> {
         
         LinearProbeSet <Integer> set = new LinearProbeSet<>(10);
 
-        set.add(5);
-        set.add(15);
-        set.add(0);
+        int arr[] = new int[]{1,5,4,4,4,25,2,2,2,5,74,1,2,3,2,0,2,2,10,2,23,24,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,78,1};
 
-        set.remove(0);
-        set.remove(15);
-        set.remove(5);
+        for(int i=0; i<arr.length; i++){
+
+            set.add(arr[i]);
+
+        }
+
+        
+        set.add(18);
+        set.add(89);
+        set.remove(78);
+
         set.printTable();
+        System.out.println(set);
 
-        System.out.println(set.contains(0));
-
+        
 
     }
+
+    
+
 
 }
