@@ -1,4 +1,4 @@
-import java.util.Collection;
+
 
 public interface MapInterface<K, V> {
     /**
@@ -58,20 +58,23 @@ public interface MapInterface<K, V> {
      *
      * @return a set view of the keys contained in this map
      */
-    SetInterface <K> keySet();
+    Iterable <K> keySet();
 
     /**
-     * Returns a collection view of the values contained in this map.
+     * Returns a a set view of the values contained in this map.
      *
-     * @return a collection view of the values contained in this map
+     * @return a set view of the values contained in this map
      */
-    Collection<V> values();
+ 
+    Iterable <V> values();
 
     /**
-     * Returns a set view of the key-value mappings contained in this map.
+     * Returns a a set view of the entries contained in this map.
      *
-     * @return a set view of the key-value mappings contained in this map
+     * @return a set view of the entries contained in this map
      */
-    SetInterface<Entry<K, V>> entrySet();
+
+    Iterable<Entry<K,V>> entrySet();
+
 }
 
